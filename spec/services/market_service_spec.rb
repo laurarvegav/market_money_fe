@@ -28,6 +28,8 @@ RSpec.describe 'MarketService' do
     expect(parsed_market[:data]).to be_a(Hash)
     expect(parsed_market[:data][:attributes][:name]).to be_a(String)
     expect(parsed_market[:data][:attributes][:city]).to be_a(String)
+    expect(parsed_market[:data][:attributes][:street]).to be_a(String)
+    expect(parsed_market[:data][:attributes][:zip]).to be_a(String)
     expect(parsed_market[:data][:attributes][:state]).to be_a(String)
     expect(parsed_market[:data][:id]).to be_a(String)
     expect(parsed_market[:data][:relationships][:vendors][:data].first[:id]).to be_a(String)
