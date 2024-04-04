@@ -47,5 +47,18 @@ RSpec.describe 'MarketService' do
     expect(parsed_vendor[:data][:attributes][:credit_accepted]).to be_in([true, false])
     expect(parsed_vendor[:data][:id]).to be_a(String)
   end
+
+  it 'finds markets given key words' do
+    parsed_markets = MarketService.new.find_market_search("city=Denver&state=Colorado")
+
+    expect(parsed_markets[:data]).to be_an(Array)
+    expect(parsed_markets[:data].first).to be_a(Hash)
+    expect(parsed_markets[:data].first[:attributes][:name]).to be_a(String)
+    expect(parsed_markets[:data].first[:attributes][:city]).to be_a(String)
+    expect(parsed_markets[:data].first[:attributes][:street]).to be_a(String)
+    expect(parsed_markets[:data].first[:attributes][:zip]).to be_a(String)
+    expect(parsed_markets[:data].first[:attributes][:state]).to be_a(String)
+    expect(parsed_markets[:data].first[:id]).to be_a(String)
+  end
  end
 end
