@@ -15,8 +15,12 @@ class MarketService
   def find_market(id)
     get_url("markets/#{id}")
   end
-
+  
   def find_vendor(id)
     get_url("vendors/#{id}")
+  end
+  
+  def find_market_search(key_params)
+    get_url("markets/search?#{key_params}")
   end
 end
