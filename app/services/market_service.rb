@@ -11,4 +11,12 @@ class MarketService
   def find_markets
     get_url("markets")
   end
+
+  def find_market(id)
+    get_url("markets/#{id}")
+  end
+
+  def find_vendor(id)
+    get_url("vendors/#{id}")
+  end
 end
