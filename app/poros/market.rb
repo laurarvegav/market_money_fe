@@ -4,7 +4,8 @@ class Market
               :street,
               :city,
               :state,
-              :zip
+              :zip,
+              :vendors_id
   
   def initialize(data)
     @id = data[:id].to_i
@@ -13,9 +14,16 @@ class Market
     @city = data[:city]
     @state = data[:state]
     @zip = data[:zip]
+    @vendors_id = data[:vendors_ids]
   end
 
   def address
     "#{@street} #{@city}, #{@state} #{@zip}"
+  end
+
+  def vendors
+    @vendors_id.map do |id|
+      ServiceFacade.new.vendor(id)
+    end
   end
 end
