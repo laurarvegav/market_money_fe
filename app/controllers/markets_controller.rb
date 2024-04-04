@@ -4,6 +4,6 @@ class MarketsController < ApplicationController
   end
 
   def show
-
+    @market = ServiceFacade.new.market(params[:id])
   end
 end
