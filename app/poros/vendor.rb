@@ -14,4 +14,12 @@ class Vendor
     @credit_accepted = data[:credit_accepted]
     @description = data[:description]
   end
+
+  def credit
+    if @credit_accepted == true
+      "YES"
+    elsif @credit_accepted == false
+      "NO"
+    end
+  end
 end
