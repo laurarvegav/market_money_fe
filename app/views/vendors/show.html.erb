@@ -1,10 +1,34 @@
 <h1><%= @vendor.name %></h1>
 
 <section class="contact">
-  <h6>Contact Info:</h6>
-  <h6>Name: <%= @vendor.contact_name %></h6>
-  <h6>Phone: <%= @vendor.contact_phone %></h6>
+  <h3>Contact Info:</h3>
+  <h4>Name: <%= @vendor.contact_name %></h4>
+  <h4>Phone: <%= @vendor.contact_phone %></h4>
 </section>
 
-<h6>Credit Accepted?: <%=@vendor.credit%></h6>
-<h6>Description: <%=@vendor.description%></h6>
+<h3>Credit Accepted?: <%=@vendor.credit%></h3>
+<h4>Description: <%=@vendor.description%></h4>
+
+<section class="search_markets">
+  <h4>Search for Markets to add this vendor:</h4>
+  <%= form_with url: vendor_path(@vendor.id), method: :get do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, value: "Name" %>
+    <%= f.label :city %>
+    <%= f.text_field :city, value: "City" %>
+    <%= f.label :state %>
+    <%= f.text_field :state, value: "State" %>
+
+    <%=f.submit "Search" %>
+  <% end %>
+</section>
+
+<% if @markets %>
+  <section class="found_markets">
+    <% @markets.each do |market|%>
+      <div id="market-<%= market.id %>">
+        <li><%= link_to "#{market.name}", market_path(market.id) %></li>
+      </div>
+    <% end %>
+  </section>
+<% end %>
