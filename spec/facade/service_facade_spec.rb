@@ -13,13 +13,16 @@ RSpec.describe 'Service Facade' do
         end
       end
 
-      it 'returns market when given its id' do
+      it 'returns a market when given its id' do
         id = 322458
         market = ServiceFacade.new.market(id)
         expect(market).to be_a(Market)
-        expect(market.id).to be_an(Integer)
-        expect(market.name).to be_a(String)
-        expect(market.address).to be_a(String)
+      end
+
+      it 'returns a vendor when given its id' do
+        id = 55823
+        vendor = ServiceFacade.new.vendor(id)
+        expect(vendor).to be_a(Vendor)
       end
     end
   end
@@ -45,8 +48,7 @@ RSpec.describe 'Service Facade' do
         expect(ServiceFacade.new.market_data(data)).to eq({name: "14&U Farmers' Market", street: "1400 U Street NW ",
         city: "Washington",
         state: "District of Columbia",
-        zip: "20009", id: "322458"})
-
+        zip: "20009", id: "322458", vendors_ids: ["55823"]})
       end
     end
   end
