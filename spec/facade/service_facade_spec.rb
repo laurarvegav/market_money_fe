@@ -3,12 +3,15 @@ require 'rails_helper'
 RSpec.describe 'Service Facade' do
  describe 'Instance methods' do
   describe 'markets' do
-    it 'returns a hash of market data' do
-      market_data = ServiceFacade.new.markets
-      expect(market_data).to be_a(Hash)
-      expect(market_data).to have_key(:name)
-      expect(market_data).to have_key(:state)
-      expect(market_data).to have_key(:city)
+    it 'returns an array of market data' do
+      markets = ServiceFacade.new.markets
+      expect(markets).to be_an(Array)
+      markets.each do |market|
+        expect(market.id).to be_an(Integer)
+        expect(market.name).to be_a(String)
+        expect(market.city).to be_a(String)
+        expect(market.state).to be_a(String)
+      end
     end
   end
  end
