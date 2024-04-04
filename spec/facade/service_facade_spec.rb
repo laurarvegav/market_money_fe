@@ -24,6 +24,14 @@ RSpec.describe 'Service Facade' do
         vendor = ServiceFacade.new.vendor(id)
         expect(vendor).to be_a(Vendor)
       end
+
+      it 'markets_search returns an array of market data given a keyword' do
+        markets = ServiceFacade.new.markets_search("city=Denver&state=Colorado")
+        expect(markets).to be_an(Array)
+        markets.each do |market|
+          expect(market).to be_a(Market)
+        end
+      end
     end
   end
 

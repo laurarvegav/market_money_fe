@@ -4,8 +4,19 @@ class ServiceFacade
     service = MarketService.new
 
     json = service.find_markets
-    json[:data].map do |market_data|
-      data = market_data(market_data)
+    json[:data].map do |json_data|
+      data = market_data(json_data)
+
+      Market.new(data)
+    end
+  end
+
+  def markets_search(input)
+    service = MarketService.new
+
+    json = service.find_market_search(input)
+    json[:data].map do |json_data|
+      data = market_data(json_data)
 
       Market.new(data)
     end
