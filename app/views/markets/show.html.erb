@@ -1,0 +1,13 @@
+<h1><%= @market.name %></h1>
+
+<section class="address">
+  <h6><%= @market.address %></h6>
+</section>
+
+<section class="vendors">
+  <% @market.vendors.each do |vendor| %>
+    <div id="vendor-<%=vendor.id%>">
+      <%= link_to "#{vendor.name}", vendor_path(vendor.id) %>
+    </div>
+  <% end %>
+</section>
